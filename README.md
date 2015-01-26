@@ -7,6 +7,12 @@ This app makes a search query (`"ellie goulding" AND lights AND action:ListenAct
 
 ![Example app screenshot on Nexus 5 device](screenshot.png)
 
+
+Before Building
+----------------
+
+Insert your API key in the MainActivity.java.
+
 Building
 --------
 In order to build the project:
