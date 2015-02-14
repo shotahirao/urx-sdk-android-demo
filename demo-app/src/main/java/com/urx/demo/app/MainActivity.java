@@ -31,9 +31,9 @@ public class MainActivity extends ActionBarActivity {
     // Set up a client configuration object with your API key, and then
     // build an API client to use for querying and resolving deeplinks.
     // Note that these instances can be shared, as they are thread-safe.
-    static final ClientConfig config = new ClientConfig("INSERT-API-KEY-HERE");
-    static final AndroidClient client = new AndroidClient(config);
 
+    AndroidClient client;
+    ClientConfig config;
     ViewGroup container;
     ImageView image;
     TextView button;
@@ -41,7 +41,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.config = new ClientConfig("INSERT_API_KEY_HERE",this);
+        this.client = new AndroidClient(config);
         // Setting up the UI elements
         setContentView(R.layout.activity_main);
         container = (ViewGroup) findViewById(R.id.container);
@@ -55,7 +56,6 @@ public class MainActivity extends ActionBarActivity {
     protected void executeSearch() {
         // Build the query: "ellie goulding" AND lights AND action:ListenAction
         final Query q = phrase("ellie goulding").and(term("lights")).and(action(Listen));
-
         // Execute the query
         client.query(q, new ResponseHandler<SearchResults>() {
             @Override
